@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqow47bch5ocs"]
+
+[ext_resource type="Script" uid="uid://bu37n0pnsp6si" path="res://level.gd" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://d36yllicrg8s1" path="res://memory.tscn" id="1_ig7tw"]
+
+[node name="Main" type="Node"]
+
+[node name="Level" type="Node2D" parent="."]
+script = ExtResource("1_0xm2m")
+
+[node name="Memory" parent="Level" instance=ExtResource("1_ig7tw")]
+position = Vector2(36, 56)
+
+[node name="Timer" type="Timer" parent="Level"]
+
+[connection signal="timeout" from="Level/Timer" to="Level" method="_on_timer_timeout"]
