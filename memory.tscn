@@ -11,10 +11,14 @@ script = ExtResource("1_kh0cx")
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 40.0
 offset_bottom = 10.0
-color = Color(0.17599487, 0.36699247, 0.5703125, 1)
+color = Color(0.1764706, 0.36862746, 0.5686275, 1)
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(20, 5)
 shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

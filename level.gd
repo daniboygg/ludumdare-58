@@ -3,8 +3,8 @@ extends Node2D
 @onready var timer: Timer = $Timer
 
 const MEMORY := preload("uid://d36yllicrg8s1")
-const MIN_TIME := 0.1
-const MAX_TIME := 0.2
+const MIN_TIME := 1
+const MAX_TIME := 2
 
 func _ready() -> void:
 	timer.wait_time = randf_range(MIN_TIME, MAX_TIME)
