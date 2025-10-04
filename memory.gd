@@ -4,18 +4,23 @@ class_name Memory extends Node2D
 @export var height := 10
 @export var width := 40
 @export var speed := 20.0
-@export var deviation := speed * 0.2
 
 @onready var color_rect: ColorRect = $ColorRect
 @onready var area_2d: Area2D = $Area2D
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
 @onready var label: Label = $Label
 
-const color_base := Color("#2d5e91")
-const color_highlight := Color("#5e9ee0ff")
+
+const color_good_base := Color("#346290")
+const color_good_highlight := Color("467db3ff")
+const color_bad_base := Color("#802e2e")
+const color_bad_highlight := Color("c04747ff")
+
+var color_base := color_good_base
+var color_highlight := color_good_highlight
+
 
 func _ready():
-	speed = randf_range(speed - deviation, speed + deviation)
 	color_rect.size.x = width
 	color_rect.color = color_base
 	collision_shape_2d.shape.size.x = width
@@ -33,4 +38,19 @@ func _process(delta: float) -> void:
 	
 	if position.x > Globals.WIDTH:
 		queue_free()
+		
+
+func start_on_position(new_position: Vector2):
+	position = new_position
+	
+	
+func make_legit():
+	color_base = color_good_base
+	color_highlight = color_good_highlight
+	
+	
+func make_corrupt():
+	color_base = color_bad_base
+	color_highlight = color_bad_highlight
+	
 	

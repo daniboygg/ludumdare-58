@@ -12,5 +12,7 @@ script = ExtResource("1_0xm2m")
 position = Vector2(36, 56)
 
 [node name="Timer" type="Timer" parent="Level"]
+wait_time = 0.5
+autostart = true
 
 [connection signal="timeout" from="Level/Timer" to="Level" method="_on_timer_timeout"]
