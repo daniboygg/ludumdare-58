@@ -15,28 +15,28 @@ grow_vertical = 2
 theme = ExtResource("1_fqghj")
 script = ExtResource("2_x1r0e")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="BGRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.106126174, 0.106126174, 0.106126174, 0.437)
+color = Color(0.105882354, 0.105882354, 0.105882354, 1)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -96.0
-offset_top = -34.5
-offset_right = 96.0
-offset_bottom = 34.5
+offset_left = -104.0
+offset_top = -51.5
+offset_right = 104.0
+offset_bottom = 51.5
 grow_horizontal = 2
 grow_vertical = 2
 

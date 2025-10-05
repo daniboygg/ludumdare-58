@@ -9,8 +9,6 @@ const LEVEL = preload("uid://bmibhdkm6qlta")
 const START_SCREEN = preload("uid://csdn3xie7xdtu")
 const POPUP_SCREEN = preload("uid://eelsmiam16di")
 
-var current := -1
-
 func _ready() -> void:
 	var start: StartScreen = START_SCREEN.instantiate()
 	start.start_pressed.connect(_on_start_pressed)
@@ -18,11 +16,11 @@ func _ready() -> void:
 
 	
 func next_level():
-	current += 1
-	assert(current < len(levels), "No more levels!!!")
+	Globals.current_level += 1
+	assert(Globals.current_level < len(levels), "No more levels!!!")
 	
-	var params: LevelParams = levels[current]
-	assert(params != null, "Level %d is undefined!" % current)
+	var params: LevelParams = levels[Globals.current_level]
+	assert(params != null, "Level %d is undefined!" % Globals.current_level)
 	var new_level: Level = LEVEL.instantiate()
 	new_level.params = params
 	new_level.finished.connect(_on_level_finished)
@@ -44,7 +42,7 @@ func _on_level_finished():
 	interface.add_child(popup)
 	popup.button_pressed.connect(_on_button_pressed)
 	popup.title.text = "Congratulations!"
-	popup.text.text = "You completed\nprogram_%02d" % current
+	popup.text.text = "You completed\nprogram_%02d" % Globals.current_level
 	popup.button.text = "Next"
 	
 	

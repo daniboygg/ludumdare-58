@@ -1,6 +1,10 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dnroccymnpymn"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dnroccymnpymn"]
 
 [ext_resource type="FontFile" uid="uid://b3f58sxlfe0vt" path="res://resources/Kenney Mini Square Mono.ttf" id="1_e1x85"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_e1x85"]
+color = Color(0.3764706, 0.5647059, 0.20392157, 1)
+vertical = true
 
 [resource]
 Button/font_sizes/font_size = 8
@@ -13,3 +17,4 @@ MarginContainer/constants/margin_left = 8
 MarginContainer/constants/margin_right = 8
 MarginContainer/constants/margin_top = 5
 VBoxContainer/constants/separation = 16
+VSeparator/styles/separator = SubResource("StyleBoxLine_e1x85")

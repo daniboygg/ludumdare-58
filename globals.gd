@@ -5,6 +5,8 @@ signal memory_increased
 const WIDTH := 320
 const HEIGHT := 180
 
+var current_level := -1
+
 var memory := 0
 var rage := 0
 
