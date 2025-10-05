@@ -3,7 +3,8 @@ class_name Memory extends Node2D
 signal left_scene(Memory)
 signal killed(Memory)
 
-@onready var color_rect: ColorRect = $ColorRect
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var color_rect: ColorRect = $Node2D/ColorRect
 @onready var area_2d: Area2D = $Area2D
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
 
@@ -19,6 +20,7 @@ var height := 10
 var width := 40
 var speed := 20.0
 var is_corrupt := false
+var is_killed := false
 
 
 func _ready():
@@ -30,18 +32,33 @@ func _ready():
 func _process(delta: float) -> void:
 	position.x = position.x + speed * delta
 	
-	var mouse_position := get_viewport().get_mouse_position()
-	var rect := Rect2(position, collision_shape_2d.shape.get_rect().size)
-	if rect.has_point(mouse_position):
+	if is_killed:
+		return
+	
+	if is_mouse_over_me():
 		color_rect.color = color_highlight
-		if Input.is_mouse_button_pressed(MouseButton.MOUSE_BUTTON_LEFT):
-			killed.emit(self)
 	else:
 		color_rect.color = color_base
 	
 	if position.x > Globals.WIDTH:
 		left_scene.emit(self)
+			
+
+func _input(event: InputEvent) -> void:
+	if not event is InputEventMouseButton or is_killed:
+		return
 		
+	if event.is_released() and is_mouse_over_me() and is_corrupt:
+		is_killed = true
+		animation_player.play("killed")
+		killed.emit(self)
+
+
+func is_mouse_over_me() -> bool:
+	var mouse_position := get_viewport().get_mouse_position()
+	var rect := Rect2(position, collision_shape_2d.shape.get_rect().size)
+	return rect.has_point(mouse_position)
+	
 
 func start_on_position(new_position: Vector2):
 	position = new_position
