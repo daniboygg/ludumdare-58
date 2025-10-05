@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmibhdkm6qlta"]
+
+[ext_resource type="Script" uid="uid://bu37n0pnsp6si" path="res://level.gd" id="1_80vhd"]
+[ext_resource type="Resource" uid="uid://w7id5k3641" path="res://levels/level_002.tres" id="2_cwqvt"]
+[ext_resource type="PackedScene" uid="uid://dqr6x3c2ydg43" path="res://ui/level_ui.tscn" id="3_cwqvt"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_80vhd")
+params = ExtResource("2_cwqvt")
+
+[node name="SpanMemoryTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="DifficultyCheckerTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="LevelTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("3_cwqvt")]
+
+[connection signal="timeout" from="SpanMemoryTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DifficultyCheckerTimer" to="." method="_on_difficulty_timer_timeout"]
+[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]

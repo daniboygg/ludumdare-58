@@ -1,127 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqow47bch5ocs"]
+[gd_scene load_steps=6 format=3 uid="uid://cqow47bch5ocs"]
 
-[ext_resource type="Script" uid="uid://bu37n0pnsp6si" path="res://level.gd" id="1_0xm2m"]
-[ext_resource type="Theme" uid="uid://dnroccymnpymn" path="res://theme.tres" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://8hh3nlsd4n3i" path="res://ui.gd" id="3_1bvp3"]
-[ext_resource type="Texture2D" uid="uid://s8vd8oc3ttax" path="res://ui/progress_bar.png" id="3_h2yge"]
-[ext_resource type="Texture2D" uid="uid://bw1ykn3dk57ci" path="res://ui/border.png" id="4_lquwl"]
-
-[sub_resource type="Curve" id="Curve_lquwl"]
-_limits = [0.3, 0.8344339, 0.0, 1.0]
-_data = [Vector2(0, 0.3), 0.0, 0.13170825, 0, 0, Vector2(0.33910036, 0.5047654), 0.0, 0.0, 0, 0, Vector2(0.68858135, 0.6769803), 1.599754, 1.599754, 0, 0, Vector2(1, 0.8), -0.27642775, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="Theme" id="Theme_0xm2m"]
-MarginContainer/constants/margin_bottom = 5
-MarginContainer/constants/margin_left = 5
-MarginContainer/constants/margin_right = 5
-MarginContainer/constants/margin_top = 5
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1bvp3"]
-atlas = ExtResource("3_h2yge")
-region = Rect2(0, 0, 51, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lquwl"]
-atlas = ExtResource("3_h2yge")
-region = Rect2(0, 8, 51, 8)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
-atlas = ExtResource("3_h2yge")
-region = Rect2(0, 16, 51, 8)
+[ext_resource type="Script" uid="uid://cae1vlp1njg04" path="res://main.gd" id="1_kek77"]
+[ext_resource type="Script" uid="uid://cqevfgqqftml3" path="res://levels/level_params.gd" id="2_5vw27"]
+[ext_resource type="Resource" uid="uid://cuven0yjscyf4" path="res://levels/level_001.tres" id="3_kek77"]
+[ext_resource type="Resource" uid="uid://w7id5k3641" path="res://levels/level_002.tres" id="4_lquwl"]
+[ext_resource type="Resource" uid="uid://bkbmmmxgvkdr4" path="res://levels/level_003.tres" id="5_7mycd"]
 
 [node name="Main" type="Node"]
+script = ExtResource("1_kek77")
+levels = Array[ExtResource("2_5vw27")]([ExtResource("3_kek77"), ExtResource("4_lquwl"), ExtResource("5_7mycd")])
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.105882354, 0.105882354, 0.105882354, 1)
-
-[node name="LevelManager" type="Node2D" parent="."]
-
-[node name="Level" type="Node2D" parent="LevelManager"]
-script = ExtResource("1_0xm2m")
-curve = SubResource("Curve_lquwl")
-
-[node name="Timer" type="Timer" parent="LevelManager/Level"]
-wait_time = 0.5
-autostart = true
-
-[node name="DifficultyCheckerTimer" type="Timer" parent="LevelManager/Level"]
-autostart = true
-
-[node name="LevelTimer" type="Timer" parent="LevelManager/Level"]
-wait_time = 30.0
-one_shot = true
-autostart = true
-
-[node name="UI" type="Control" parent="."]
-z_index = 1
-texture_filter = 1
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_0xm2m")
-script = ExtResource("3_1bvp3")
-
-[node name="NinePatchRect" type="NinePatchRect" parent="UI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_lquwl")
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="UI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 1
-
-[node name="Label" type="Label" parent="UI/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 1
-theme = SubResource("Theme_0xm2m")
-text = "Memory"
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="UI/MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-step = 5.0
-texture_under = SubResource("AtlasTexture_1bvp3")
-texture_over = SubResource("AtlasTexture_lquwl")
-texture_progress = SubResource("AtlasTexture_7mycd")
-
-[node name="Percentage" type="Label" parent="UI/MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="Debug" type="Label" parent="UI/MarginContainer/VBoxContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-
-[connection signal="timeout" from="LevelManager/Level/Timer" to="LevelManager/Level" method="_on_timer_timeout"]
-[connection signal="timeout" from="LevelManager/Level/DifficultyCheckerTimer" to="LevelManager/Level" method="_on_difficulty_timer_timeout"]
+[node name="World" type="Node2D" parent="."]

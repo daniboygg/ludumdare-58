@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="LevelParams" load_steps=3 format=3 uid="uid://bkbmmmxgvkdr4"]
+
+[ext_resource type="Script" uid="uid://cqevfgqqftml3" path="res://levels/level_params.gd" id="1_j3aqt"]
+
+[sub_resource type="Curve" id="Curve_8g6tw"]
+_limits = [0.3, 0.9, 0.0, 1.0]
+_data = [Vector2(0, 0.3), 0.0, 0.57230836, 0, 0, Vector2(0.39100343, 0.67903674), 0.5799102, 0.5799102, 0, 0, Vector2(1, 0.9), 0.2608589, 0.0, 0, 0]
+point_count = 3
+
+[resource]
+script = ExtResource("1_j3aqt")
+corrupt_probability_evolution = SubResource("Curve_8g6tw")
+level_time_seconds = 30.0
+memory_span_every_seconds = 0.4
+memory_speed_min = 100.0
+memory_speed_max = 125.0
+memory_corrupted_speed_min = 110.0
+memory_corrupted_speed_max = 160.0
+memory_increase = 20
+memory_decrease = 2
+metadata/_custom_type_script = "uid://cqevfgqqftml3"
