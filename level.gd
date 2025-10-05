@@ -2,6 +2,7 @@ class_name Level
 extends Node2D
 
 signal finished
+signal failed
 
 @export var params: LevelParams
 
@@ -9,14 +10,18 @@ signal finished
 @onready var difficulty_checker_timer: Timer = $DifficultyCheckerTimer
 @onready var level_timer: Timer = $LevelTimer
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
+@onready var memory_full_timer: Timer = $MemoryFullTimer
 
 const MEMORY := preload("uid://d36yllicrg8s1")
 const TOP_MARGIN := 20
+
+var is_finished := false
 
 func _ready() -> void:
 	span_memory_timer.wait_time = params.memory_span_every_seconds
 	level_timer.wait_time = params.level_time_seconds
 	level_timer.start()
+	memory_full_timer.wait_time = params.grace_period_seconds
 	calculate_corruption_probability()
 
 
@@ -52,12 +57,20 @@ func create_memory_bar():
 	self.add_child(instance)
 
 
-
 func _on_left_scene(memory: Memory):
+	if is_finished:
+		return
+		
 	if memory.is_corrupt:
 		Globals.increase_memory(params.memory_increase)
 	else:
 		Globals.decrease_memory(params.memory_decrease)
+	
+	if Globals.memory >= 100:
+		if memory_full_timer.is_stopped():
+			memory_full_timer.start()
+	else:
+		memory_full_timer.stop()
 
 
 func _on_killed(memory: Memory):
@@ -76,5 +89,12 @@ func _on_difficulty_timer_timeout() -> void:
 
 func _on_level_timer_timeout() -> void:
 	difficulty_checker_timer.stop()
+	memory_full_timer.stop()
 	Globals.corrupt_probability = 0
+	is_finished = true
 	finished.emit()
+
+
+func _on_memory_full_timer_timeout() -> void:
+	is_finished = true
+	failed.emit()

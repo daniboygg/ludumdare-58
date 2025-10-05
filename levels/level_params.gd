@@ -4,6 +4,7 @@ extends Resource
 @export var corrupt_probability_evolution: Curve = null
 @export var level_time_seconds: float = 0
 @export var memory_span_every_seconds: float = 0
+@export var grace_period_seconds: float = 3.0
 
 @export_group("Memory speed")
 @export var memory_speed_min := 50.0

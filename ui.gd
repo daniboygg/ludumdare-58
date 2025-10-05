@@ -9,6 +9,7 @@ extends Control
 
 func _ready() -> void:
 	Globals.memory_increased.connect(_on_memory_increased)
+	texture_progress_bar.value = Globals.memory
 
 
 func _process(_delta: float) -> void:

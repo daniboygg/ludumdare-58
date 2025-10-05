@@ -18,6 +18,10 @@ autostart = true
 [node name="LevelTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="MemoryFullTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("3_cwqvt")]
@@ -25,3 +29,4 @@ one_shot = true
 [connection signal="timeout" from="SpanMemoryTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="DifficultyCheckerTimer" to="." method="_on_difficulty_timer_timeout"]
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
+[connection signal="timeout" from="MemoryFullTimer" to="." method="_on_memory_full_timer_timeout"]

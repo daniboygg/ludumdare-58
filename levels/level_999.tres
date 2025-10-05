@@ -10,6 +10,6 @@ point_count = 2
 [resource]
 script = ExtResource("1_a7voe")
 corrupt_probability_evolution = SubResource("Curve_a7voe")
-level_time_seconds = 2.0
+level_time_seconds = 15.0
 memory_span_every_seconds = 0.1
 metadata/_custom_type_script = "uid://cqevfgqqftml3"
