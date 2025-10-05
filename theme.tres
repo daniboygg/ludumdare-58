@@ -1,6 +1,24 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dnroccymnpymn"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dnroccymnpymn"]
 
 [ext_resource type="FontFile" uid="uid://b3f58sxlfe0vt" path="res://resources/Kenney Mini Square Mono.ttf" id="1_e1x85"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1x85"]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.48828125, 0.3414154, 0.47551033, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjfk0"]
+content_margin_top = 1.0
+content_margin_bottom = 1.0
+bg_color = Color(0.3984375, 0.20855713, 0.38505557, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_e1x85"]
 color = Color(0.3764706, 0.5647059, 0.20392157, 1)
@@ -9,6 +27,8 @@ vertical = true
 [resource]
 Button/font_sizes/font_size = 8
 Button/fonts/font = ExtResource("1_e1x85")
+Button/styles/hover = SubResource("StyleBoxFlat_e1x85")
+Button/styles/normal = SubResource("StyleBoxFlat_cjfk0")
 Label/colors/font_color = Color(0.3764706, 0.5647059, 0.20392157, 1)
 Label/font_sizes/font_size = 8
 Label/fonts/font = ExtResource("1_e1x85")

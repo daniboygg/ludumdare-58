@@ -75,12 +75,12 @@ horizontal_alignment = 1
 [node name="Text" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "You completed
-program_01"
+text = "Thanks to your your job"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 2
 text = "Next"
 

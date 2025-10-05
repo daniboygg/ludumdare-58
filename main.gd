@@ -10,14 +10,26 @@ const START_SCREEN = preload("uid://csdn3xie7xdtu")
 const POPUP_SCREEN = preload("uid://eelsmiam16di")
 
 func _ready() -> void:
+	start_game()
+
+
+func start_game():
+	for child in interface.get_children():
+		child.queue_free()
+	for child in world.get_children():
+		world.remove_child(child)
+	
+	Globals.current_level = -1
 	var start: StartScreen = START_SCREEN.instantiate()
 	start.start_pressed.connect(_on_start_pressed)
 	interface.add_child(start)
 
-	
+
 func next_level():
 	Globals.current_level += 1
-	assert(Globals.current_level < len(levels), "No more levels!!!")
+	if Globals.current_level >= len(levels):
+		finish_screen()
+		return
 	
 	var params: LevelParams = levels[Globals.current_level]
 	assert(params != null, "Level %d is undefined!" % Globals.current_level)
@@ -28,6 +40,15 @@ func next_level():
 	for child in world.get_children():
 		world.remove_child(child)
 	world.add_child(new_level)
+	
+	
+func finish_screen():
+	var popup: PopupScreen = POPUP_SCREEN.instantiate()
+	interface.add_child(popup)
+	popup.button_pressed.connect(start_game)
+	popup.title.text = "Congratulations!"
+	popup.text.text = "Thanks to your your job,\nno more memory leaks\nin any language!" 
+	popup.button.text = "Restart"
 
 
 func _on_start_pressed():

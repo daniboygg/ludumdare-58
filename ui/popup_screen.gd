@@ -13,6 +13,7 @@ signal button_pressed
 var final_pos := Vector2.ZERO
 
 func _ready() -> void:
+	panel_container.modulate = Color.TRANSPARENT
 	final_pos = panel_container.position
 	animate_in()
 
