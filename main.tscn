@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqow47bch5ocs"]
+[gd_scene load_steps=4 format=3 uid="uid://cqow47bch5ocs"]
 
 [ext_resource type="Script" uid="uid://cae1vlp1njg04" path="res://main.gd" id="1_kek77"]
 [ext_resource type="Script" uid="uid://cqevfgqqftml3" path="res://levels/level_params.gd" id="2_5vw27"]
-[ext_resource type="Resource" uid="uid://cuven0yjscyf4" path="res://levels/level_001.tres" id="3_kek77"]
-[ext_resource type="Resource" uid="uid://w7id5k3641" path="res://levels/level_002.tres" id="4_lquwl"]
-[ext_resource type="Resource" uid="uid://bkbmmmxgvkdr4" path="res://levels/level_003.tres" id="5_7mycd"]
+[ext_resource type="Resource" uid="uid://c02fnu8s51cmm" path="res://levels/level_999.tres" id="3_h2yge"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_kek77")
@@ -12,7 +10,10 @@ levels = Array[ExtResource("2_5vw27")]([ExtResource("3_kek77"), ExtResource("4_l
 
 [node name="World" type="Node2D" parent="."]
 
-[node name="Interface" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Interface" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

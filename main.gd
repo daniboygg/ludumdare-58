@@ -3,10 +3,11 @@ extends Node
 @export var levels: Array[LevelParams] = []
 
 @onready var world: Node2D = $World
-@onready var interface: Control = $Interface
+@onready var interface: Control = %Interface
 
 const LEVEL = preload("uid://bmibhdkm6qlta")
 const START_SCREEN = preload("uid://csdn3xie7xdtu")
+const POPUP_SCREEN = preload("uid://eelsmiam16di")
 
 var current := -1
 
@@ -34,7 +35,21 @@ func next_level():
 func _on_start_pressed():
 	for child in interface.get_children():
 		child.queue_free()
+		
 	next_level()
 
+
 func _on_level_finished():
+	var popup: PopupScreen = POPUP_SCREEN.instantiate()
+	interface.add_child(popup)
+	popup.button_pressed.connect(_on_button_pressed)
+	popup.title.text = "Congratulations!"
+	popup.text.text = "You completed\nprogram_%02d" % current
+	popup.button.text = "Next"
+	
+	
+func _on_button_pressed():
+	for child in interface.get_children():
+		child.queue_free()
+	
 	next_level()

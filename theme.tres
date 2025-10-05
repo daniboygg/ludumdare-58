@@ -12,3 +12,4 @@ MarginContainer/constants/margin_bottom = 5
 MarginContainer/constants/margin_left = 8
 MarginContainer/constants/margin_right = 8
 MarginContainer/constants/margin_top = 5
+VBoxContainer/constants/separation = 16

@@ -75,4 +75,6 @@ func _on_difficulty_timer_timeout() -> void:
 
 
 func _on_level_timer_timeout() -> void:
+	difficulty_checker_timer.stop()
+	Globals.corrupt_probability = 0
 	finished.emit()
