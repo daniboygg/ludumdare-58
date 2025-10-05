@@ -18,6 +18,5 @@ func _process(_delta: float) -> void:
 		debug.text = "  c:%d%% t:%.0f" % [Globals.corrupt_probability*100, Globals.time_left]
 
 
-
 func _on_memory_increased():
 	texture_progress_bar.value = Globals.memory
