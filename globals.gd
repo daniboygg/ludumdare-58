@@ -2,7 +2,7 @@ extends Node
 
 signal memory_increased
 
-const WIDTH := 360
+const WIDTH := 320
 const HEIGHT := 180
 
 var memory := 0

@@ -39,7 +39,6 @@ func _on_left_scene(memory: Memory):
 		Globals.increase_memory(10)
 	else:
 		Globals.decrease_memory(2)
-	memory.queue_free()
 
 
 func _on_killed(memory: Memory):

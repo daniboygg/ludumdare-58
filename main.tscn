@@ -119,7 +119,8 @@ texture_progress = SubResource("AtlasTexture_7mycd")
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="UI/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="Debug" type="Label" parent="UI/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [connection signal="timeout" from="LevelManager/Level/Timer" to="LevelManager/Level" method="_on_timer_timeout"]

@@ -8,6 +8,7 @@ signal killed(Memory)
 @onready var area_2d: Area2D = $Area2D
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
 
+const LEAK = preload("uid://b3sm4kevlnyh2")
 const color_good_base := Color("#346290")
 const color_good_highlight := Color("4d8ccaff")
 const color_bad_base := Color("#802e2e")
@@ -42,6 +43,12 @@ func _process(delta: float) -> void:
 	
 	if position.x > Globals.WIDTH:
 		left_scene.emit(self)
+		if is_corrupt:
+			is_killed = true
+			left_scene.emit(self)
+			create_leak_label_in_level()
+		else:
+			queue_free()
 			
 
 func _input(event: InputEvent) -> void:
@@ -75,4 +82,15 @@ func make_corrupt():
 	color_highlight = color_bad_highlight
 	is_corrupt = true
 	
+
+func create_leak_label_in_level():
+	var leak: Leak = LEAK.instantiate()
+	leak.position = position - Vector2(24, 0) # 24 label width
+	var parent = get_parent()
+	parent.add_child(leak)
+	leak.animation_player.play("default")
+	leak.animation_player.animation_finished.connect(_on_leak_animation_finished)
+
 	
+func _on_leak_animation_finished(_name: String):
+	queue_free()

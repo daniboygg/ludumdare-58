@@ -1,8 +1,8 @@
 extends Control
 
 @onready var texture_progress_bar: TextureProgressBar = %TextureProgressBar
-@onready var label_2: Label = $MarginContainer/VBoxContainer/HBoxContainer/Label2
 @onready var percentage: Label = %Percentage
+@onready var debug: Label = %Debug
 
 
 func _ready() -> void:
@@ -12,7 +12,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	percentage.text = "%3d%%" % [Globals.memory]
 	if OS.is_debug_build():
-		label_2.text = "  c:%d%% t:%.0f" % [Globals.corrupt_probability*100, Globals.time_left]
+		debug.text = "  c:%d%% t:%.0f" % [Globals.corrupt_probability*100, Globals.time_left]
 
 
 func _on_memory_increased():
