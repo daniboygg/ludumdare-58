@@ -57,7 +57,7 @@ func finish_screen():
 	interface.add_child(popup)
 	popup.button_pressed.connect(start_game)
 	popup.title.text = "Congratulations!"
-	popup.text.text = "Thanks to your your job,\nno more memory leaks\nin any language!" 
+	popup.text.text = "Thanks to your job,\nno more memory leaks\nin any language!" 
 	popup.button.text = "Restart"
 
 
@@ -66,7 +66,7 @@ func fail_screen():
 	interface.add_child(popup)
 	popup.button_pressed.connect(start_game)
 	popup.title.text = "You failed!"
-	popup.text.text = "Thanks to your your job,\nwe have bad languages @xdk !" 
+	popup.text.text = "Thanks to your job,\nwe have bad languages @xdk !" 
 	popup.button.text = "Restart"
 
 

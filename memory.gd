@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 		if is_corrupt:
 			is_killed = true
 			left_scene.emit(self)
-			create_leak_label_in_level()
+			show_leak_level_and_free()
 		else:
 			queue_free()
 			
@@ -83,7 +83,7 @@ func make_corrupt():
 	is_corrupt = true
 	
 
-func create_leak_label_in_level():
+func show_leak_level_and_free():
 	var leak: Leak = LEAK.instantiate()
 	leak.position = position - Vector2(24, 0) # 24 label width
 	var parent = get_parent()

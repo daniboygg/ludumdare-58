@@ -64,12 +64,15 @@ func _on_left_scene(memory: Memory):
 	if memory.is_corrupt:
 		Globals.increase_memory(params.memory_increase)
 	else:
-		Globals.decrease_memory(params.memory_decrease)
+		if memory_full_timer.is_stopped():
+			# do not decrease while user is full
+			# force the user to take action
+			Globals.decrease_memory(params.memory_decrease)
 	
 	if Globals.memory >= 100:
 		if memory_full_timer.is_stopped():
 			memory_full_timer.start()
-	else:
+	elif not memory_full_timer.is_stopped():
 		memory_full_timer.stop()
 
 
@@ -97,4 +100,7 @@ func _on_level_timer_timeout() -> void:
 
 func _on_memory_full_timer_timeout() -> void:
 	is_finished = true
+	difficulty_checker_timer.stop()
+	memory_full_timer.stop()
+	level_timer.stop()
 	failed.emit()

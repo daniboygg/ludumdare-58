@@ -19,7 +19,6 @@ autostart = true
 one_shot = true
 
 [node name="MemoryFullTimer" type="Timer" parent="."]
-wait_time = 3.0
 one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
