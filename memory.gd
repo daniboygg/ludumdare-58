@@ -1,15 +1,16 @@
 class_name Memory extends Node2D
 
 signal left_scene(Memory)
+signal killed(Memory)
 
 @onready var color_rect: ColorRect = $ColorRect
 @onready var area_2d: Area2D = $Area2D
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
 
 const color_good_base := Color("#346290")
-const color_good_highlight := Color("467db3ff")
+const color_good_highlight := Color("4d8ccaff")
 const color_bad_base := Color("#802e2e")
-const color_bad_highlight := Color("c04747ff")
+const color_bad_highlight := Color("cd3e3eff")
 
 var color_base := color_good_base
 var color_highlight := color_good_highlight
@@ -33,6 +34,8 @@ func _process(delta: float) -> void:
 	var rect := Rect2(position, collision_shape_2d.shape.get_rect().size)
 	if rect.has_point(mouse_position):
 		color_rect.color = color_highlight
+		if Input.is_mouse_button_pressed(MouseButton.MOUSE_BUTTON_LEFT):
+			killed.emit(self)
 	else:
 		color_rect.color = color_base
 	

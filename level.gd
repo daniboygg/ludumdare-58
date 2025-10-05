@@ -23,6 +23,7 @@ func create_memory_bar():
 		instance.make_legit()
 		instance.speed = randf_range(50, 150)
 	instance.left_scene.connect(_on_left_scene)
+	instance.killed.connect(_on_killed)
 	self.add_child(instance)
 
 
@@ -32,6 +33,11 @@ func _on_left_scene(memory: Memory):
 	else:
 		Globals.decrease_memory(5)
 	memory.queue_free()
+
+
+func _on_killed(memory: Memory):
+	if memory.is_corrupt:
+		memory.queue_free()
 
 
 func _on_timer_timeout() -> void:
