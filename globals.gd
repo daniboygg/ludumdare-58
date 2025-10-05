@@ -9,7 +9,14 @@ var memory := 0
 var rage := 0
 
 var corrupt_probability := 0.0
-var time_left := 0.0
+var time_left := 0.0  
+var time_normalized := 0.0 # between 0 and 1
+var level_time := 0.0
+
+
+func set_time(time: float, level_params: LevelParams):
+	time_left = time
+	time_normalized = remap(time, level_params.level_time_seconds, 0, 0, 1)
 
 
 func increase_memory(amount: int = 5):

@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqr6x3c2ydg43"]
+[gd_scene load_steps=13 format=3 uid="uid://dqr6x3c2ydg43"]
 
 [ext_resource type="Theme" uid="uid://dnroccymnpymn" path="res://theme.tres" id="1_mghd1"]
 [ext_resource type="Script" uid="uid://8hh3nlsd4n3i" path="res://ui.gd" id="2_2gdlo"]
 [ext_resource type="Texture2D" uid="uid://bw1ykn3dk57ci" path="res://ui/border.png" id="3_anta6"]
 [ext_resource type="Texture2D" uid="uid://s8vd8oc3ttax" path="res://ui/progress_bar.png" id="4_g3uqr"]
+[ext_resource type="Texture2D" uid="uid://dsg71m4ifvcei" path="res://ui/clock_progress.png" id="5_2gdlo"]
 
 [sub_resource type="Theme" id="Theme_0xm2m"]
 MarginContainer/constants/margin_bottom = 5
@@ -22,6 +23,18 @@ region = Rect2(0, 8, 51, 8)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7mycd"]
 atlas = ExtResource("4_g3uqr")
 region = Rect2(0, 16, 51, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anta6"]
+atlas = ExtResource("5_2gdlo")
+region = Rect2(0, 0, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3uqr"]
+atlas = ExtResource("5_2gdlo")
+region = Rect2(0, 38, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yigl3"]
+atlas = ExtResource("5_2gdlo")
+region = Rect2(0, 19, 19, 19)
 
 [node name="UI" type="Control"]
 z_index = 1
@@ -100,3 +113,18 @@ layout_mode = 2
 [node name="Debug" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="Clock" type="TextureProgressBar" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+value = 15.0
+rounded = true
+fill_mode = 4
+texture_under = SubResource("AtlasTexture_anta6")
+texture_over = SubResource("AtlasTexture_g3uqr")
+texture_progress = SubResource("AtlasTexture_yigl3")

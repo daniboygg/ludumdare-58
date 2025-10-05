@@ -21,7 +21,7 @@ func _ready() -> void:
 
 
 func calculate_corruption_probability() -> void:
-	Globals.time_left = level_timer.time_left
+	Globals.set_time(level_timer.time_left, params)
 	var x := (level_timer.wait_time - level_timer.time_left) / level_timer.wait_time
 	var probability = params.corrupt_probability_evolution.sample(x)
 	Globals.corrupt_probability = probability
