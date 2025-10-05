@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dnroccymnpymn"]
+
+[ext_resource type="FontFile" uid="uid://b3f58sxlfe0vt" path="res://resources/Kenney Mini Square Mono.ttf" id="1_e1x85"]
+
+[resource]
+Label/colors/font_color = Color(0.3764706, 0.5647059, 0.20392157, 1)
+Label/font_sizes/font_size = 8
+Label/fonts/font = ExtResource("1_e1x85")
+MarginContainer/constants/margin_bottom = 5
+MarginContainer/constants/margin_left = 8
+MarginContainer/constants/margin_right = 8
+MarginContainer/constants/margin_top = 5

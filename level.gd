@@ -7,12 +7,12 @@ const MEMORY := preload("uid://d36yllicrg8s1")
 func _ready() -> void:
 	pass
 
-	
+const TOP_MARGIN := 20
 func create_memory_bar():
 	var instance: Memory = MEMORY.instantiate()
 	var start := Vector2(
 		0 - instance.width, 
-		randi_range(0, Globals.HEIGHT - instance.height),
+		randi_range(TOP_MARGIN, Globals.HEIGHT - instance.height),
 	)
 	instance.start_on_position(start)
 	var bad_probability = randf()
@@ -22,8 +22,16 @@ func create_memory_bar():
 	else:
 		instance.make_legit()
 		instance.speed = randf_range(50, 150)
-	
+	instance.left_scene.connect(_on_left_scene)
 	self.add_child(instance)
+
+
+func _on_left_scene(memory: Memory):
+	if memory.is_corrupt:
+		Globals.increase_memory(20)
+	else:
+		Globals.decrease_memory(5)
+	memory.queue_free()
 
 
 func _on_timer_timeout() -> void:

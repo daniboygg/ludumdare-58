@@ -1,15 +1,10 @@
 class_name Memory extends Node2D
 
-
-@export var height := 10
-@export var width := 40
-@export var speed := 20.0
+signal left_scene(Memory)
 
 @onready var color_rect: ColorRect = $ColorRect
 @onready var area_2d: Area2D = $Area2D
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
-@onready var label: Label = $Label
-
 
 const color_good_base := Color("#346290")
 const color_good_highlight := Color("467db3ff")
@@ -18,6 +13,11 @@ const color_bad_highlight := Color("c04747ff")
 
 var color_base := color_good_base
 var color_highlight := color_good_highlight
+
+var height := 10
+var width := 40
+var speed := 20.0
+var is_corrupt := false
 
 
 func _ready():
@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 		color_rect.color = color_base
 	
 	if position.x > Globals.WIDTH:
-		queue_free()
+		left_scene.emit(self)
 		
 
 func start_on_position(new_position: Vector2):
@@ -47,10 +47,12 @@ func start_on_position(new_position: Vector2):
 func make_legit():
 	color_base = color_good_base
 	color_highlight = color_good_highlight
+	is_corrupt = false
 	
 	
 func make_corrupt():
 	color_base = color_bad_base
 	color_highlight = color_bad_highlight
+	is_corrupt = true
 	
 	

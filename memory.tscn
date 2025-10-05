@@ -18,7 +18,3 @@ color = Color(0.1764706, 0.36862746, 0.5686275, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(20, 5)
 shape = SubResource("RectangleShape2D_0xm2m")
-
-[node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
