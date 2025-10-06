@@ -1,6 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://d36yllicrg8s1"]
+[gd_scene load_steps=10 format=3 uid="uid://d36yllicrg8s1"]
 
 [ext_resource type="Script" uid="uid://cvbw1t5ulpmbs" path="res://memory.gd" id="1_kh0cx"]
+[ext_resource type="AudioStream" uid="uid://cu7hlqvgdy6n1" path="res://audio/leak.wav" id="2_fx0hl"]
+[ext_resource type="AudioStream" uid="uid://dk6ynrq4domyy" path="res://audio/shot.wav" id="2_i0w3r"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fx0hl"]
+random_pitch = 1.1
+random_volume_offset_db = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("2_i0w3r")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_i0w3r"]
+playback_mode = 2
+random_pitch = 1.2
+random_volume_offset_db = 3.0
+streams_count = 1
+stream_0/stream = ExtResource("2_fx0hl")
 
 [sub_resource type="Animation" id="Animation_fx0hl"]
 length = 0.001
@@ -106,6 +121,15 @@ size = Vector2(40, 10)
 
 [node name="Memory" type="Node2D"]
 script = ExtResource("1_kh0cx")
+
+[node name="KillAudio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_fx0hl")
+volume_db = -9.0
+
+[node name="LeakAudio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_i0w3r")
+pitch_scale = 0.8
+bus = &"Reverb"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

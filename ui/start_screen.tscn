@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://csdn3xie7xdtu"]
+[gd_scene load_steps=6 format=3 uid="uid://csdn3xie7xdtu"]
 
 [ext_resource type="Script" uid="uid://dlq0loje2cufr" path="res://ui/start_screen.gd" id="1_igmpp"]
 [ext_resource type="Theme" uid="uid://dnroccymnpymn" path="res://theme.tres" id="1_s6cxg"]
 [ext_resource type="Texture2D" uid="uid://bw1ykn3dk57ci" path="res://ui/border.png" id="2_50anp"]
+[ext_resource type="AudioStream" uid="uid://dfhwsydstcwjp" path="res://audio/click.wav" id="3_a8ycg"]
 [ext_resource type="FontFile" uid="uid://buv8417u3g4yg" path="res://resources/Kenney Blocks.ttf" id="3_nledq"]
 
 [node name="Control" type="Control"]
@@ -15,6 +16,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_s6cxg")
 script = ExtResource("1_igmpp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_a8ycg")
+volume_db = -6.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

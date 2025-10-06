@@ -9,6 +9,7 @@ signal button_pressed
 
 @onready var panel_container: PanelContainer = %PanelContainer
 @onready var bg_rect: ColorRect = %BGRect
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 var final_pos := Vector2.ZERO
 
@@ -36,5 +37,6 @@ func animate_out():
 
 
 func _on_button_pressed() -> void:
+	audio_stream_player.play()
 	animate_out()
 	

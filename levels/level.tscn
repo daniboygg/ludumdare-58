@@ -1,8 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmibhdkm6qlta"]
+[gd_scene load_steps=8 format=3 uid="uid://bmibhdkm6qlta"]
 
 [ext_resource type="Script" uid="uid://bu37n0pnsp6si" path="res://level.gd" id="1_80vhd"]
 [ext_resource type="Resource" uid="uid://lrs7ifvam1mk" path="res://levels/level_005.tres" id="2_cwqvt"]
+[ext_resource type="AudioStream" uid="uid://dfhwsydstcwjp" path="res://audio/click.wav" id="3_5mrsh"]
 [ext_resource type="PackedScene" uid="uid://dqr6x3c2ydg43" path="res://ui/level_ui.tscn" id="3_cwqvt"]
+[ext_resource type="AudioStream" uid="uid://bxbnvkydljaao" path="res://audio/corrupt.wav" id="4_safpt"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_safpt"]
+random_pitch = 1.5
+random_volume_offset_db = 3.0
+streams_count = 1
+stream_0/stream = ExtResource("3_5mrsh")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5mrsh"]
+playback_mode = 2
+random_pitch = 2.0
+random_volume_offset_db = 3.0
+streams_count = 1
+stream_0/stream = ExtResource("4_safpt")
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_80vhd")
@@ -20,6 +35,16 @@ one_shot = true
 
 [node name="MemoryFullTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="MemoryEnterAudio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_safpt")
+volume_db = -9.0
+pitch_scale = 3.0
+
+[node name="CorruptEnterAudio" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_5mrsh")
+volume_db = -18.0
+pitch_scale = 1.1
 
 [node name="MemoryContainer" type="Node2D" parent="."]
 

@@ -20,6 +20,7 @@ func start_game():
 		world.remove_child(child)
 	
 	Globals.current_level = -1
+	Globals.memory = 0
 	var start: StartScreen = START_SCREEN.instantiate()
 	start.start_pressed.connect(_on_start_pressed)
 	interface.add_child(start)

@@ -7,6 +7,8 @@ signal killed(memory: Memory)
 @onready var color_rect: ColorRect = $Node2D/ColorRect
 @onready var area_2d: Area2D = $Area2D
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
+@onready var leak_audio: AudioStreamPlayer = $LeakAudio
+@onready var kill_audio: AudioStreamPlayer = $KillAudio
 
 const LEAK = preload("uid://b3sm4kevlnyh2")
 const color_good_base := Color("#346290")
@@ -41,6 +43,7 @@ func _process(delta: float) -> void:
 		if is_corrupt and Input.is_action_just_pressed("ui_shoot"):
 			is_killed = true
 			animation_player.play("killed")
+			kill_audio.play()
 			killed.emit(self)
 	else:
 		color_rect.color = color_base
@@ -83,6 +86,8 @@ func show_leak_level_and_free():
 	var parent = get_parent()
 	parent.add_child(leak)
 	leak.animation_player.play("default")
+	leak_audio.play()
+	await leak_audio.finished
 	leak.animation_player.animation_finished.connect(_on_leak_animation_finished)
 
 	

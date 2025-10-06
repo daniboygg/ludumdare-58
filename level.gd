@@ -12,6 +12,8 @@ signal failed
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
 @onready var memory_full_timer: Timer = $MemoryFullTimer
 @onready var memory_container: Node2D = $MemoryContainer
+@onready var memory_enter_audio: AudioStreamPlayer = $MemoryEnterAudio
+@onready var corrupt_enter_audio: AudioStreamPlayer = $CorruptEnterAudio
 
 const MEMORY := preload("uid://d36yllicrg8s1")
 const TOP_MARGIN := 20
@@ -50,12 +52,14 @@ func create_memory_bar():
 			params.memory_corrupted_speed_min, 
 			params.memory_corrupted_speed_max,
 		)
+		corrupt_enter_audio.play()
 	else:
 		instance.make_legit()
 		instance.speed = randf_range(
 			params.memory_speed_min, 
 			params.memory_speed_max,
 		)
+		memory_enter_audio.play()
 	instance.left_scene.connect(_on_left_scene)
 	instance.killed.connect(_on_killed)
 	memory_container.add_child(instance)
@@ -67,7 +71,6 @@ func _on_left_scene(memory: Memory):
 		
 	if memory.is_corrupt:
 		Globals.increase_memory(params.memory_increase)
-		print(memory, " +", params.memory_increase)
 	
 	if Globals.memory >= 100:
 		if memory_full_timer.is_stopped():
@@ -76,9 +79,8 @@ func _on_left_scene(memory: Memory):
 		memory_full_timer.stop()
 
 
-func _on_killed(memory: Memory):
+func _on_killed(_memory: Memory):
 	Globals.decrease_memory(params.memory_decrease)
-	print(memory, " -", params.memory_increase)
 
 
 func _on_timer_timeout() -> void:
