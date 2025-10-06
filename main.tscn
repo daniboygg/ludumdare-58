@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqow47bch5ocs"]
+[gd_scene load_steps=8 format=3 uid="uid://cqow47bch5ocs"]
 
 [ext_resource type="Script" uid="uid://cae1vlp1njg04" path="res://main.gd" id="1_kek77"]
 [ext_resource type="Script" uid="uid://cqevfgqqftml3" path="res://levels/level_params.gd" id="2_5vw27"]
 [ext_resource type="Resource" uid="uid://cuven0yjscyf4" path="res://levels/level_001.tres" id="3_kek77"]
 [ext_resource type="Resource" uid="uid://w7id5k3641" path="res://levels/level_002.tres" id="4_lquwl"]
 [ext_resource type="Resource" uid="uid://bkbmmmxgvkdr4" path="res://levels/level_003.tres" id="5_7mycd"]
+[ext_resource type="Resource" uid="uid://dyo34c5vf6f6c" path="res://levels/level_004.tres" id="6_272bh"]
+[ext_resource type="Resource" uid="uid://lrs7ifvam1mk" path="res://levels/level_005.tres" id="7_5vw27"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_kek77")
-levels = Array[ExtResource("2_5vw27")]([ExtResource("3_kek77"), ExtResource("4_lquwl"), ExtResource("5_7mycd")])
+levels = Array[ExtResource("2_5vw27")]([ExtResource("3_kek77"), ExtResource("4_lquwl"), ExtResource("5_7mycd"), ExtResource("6_272bh"), ExtResource("7_5vw27")])
 
 [node name="World" type="Node2D" parent="."]
 

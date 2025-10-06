@@ -3,16 +3,17 @@
 [ext_resource type="Script" uid="uid://cqevfgqqftml3" path="res://levels/level_params.gd" id="1_cmh5l"]
 
 [sub_resource type="Curve" id="Curve_8g6tw"]
-_limits = [0.3, 0.8, 0.0, 1.0]
-_data = [Vector2(0, 0.3), 0.0, 0.57230836, 0, 0, Vector2(1, 0.8), 0.54738873, 0.0, 0, 0]
+_data = [Vector2(0, 0.3), 0.0, 0.30189452, 0, 0, Vector2(0.5, 0.6), 0.2902657, 0.0, 0, 0]
 point_count = 2
 
 [resource]
 script = ExtResource("1_cmh5l")
 corrupt_probability_evolution = SubResource("Curve_8g6tw")
-level_time_seconds = 15.0
-memory_span_every_seconds = 0.7
+level_time_seconds = 20.0
+memory_span_every_seconds = 0.5
 memory_speed_max = 75.0
-memory_corrupted_speed_min = 75.0
+memory_corrupted_speed_min = 80.0
 memory_corrupted_speed_max = 100.0
+memory_increase = 50
+memory_decrease = 10
 metadata/_custom_type_script = "uid://cqevfgqqftml3"

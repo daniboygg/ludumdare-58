@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="LevelParams" load_steps=3 format=3 uid="uid://dyo34c5vf6f6c"]
+
+[ext_resource type="Script" uid="uid://cqevfgqqftml3" path="res://levels/level_params.gd" id="1_lknau"]
+
+[sub_resource type="Curve" id="Curve_8g6tw"]
+_data = [Vector2(0, 0.3), 0.0, 1.0, 0, 0]
+point_count = 1
+
+[resource]
+script = ExtResource("1_lknau")
+corrupt_probability_evolution = SubResource("Curve_8g6tw")
+level_time_seconds = 45.0
+memory_span_every_seconds = 0.2
+grace_period_seconds = 2.0
+memory_speed_min = 100.0
+memory_speed_max = 125.0
+memory_corrupted_speed_min = 100.0
+memory_corrupted_speed_max = 200.0
+memory_increase = 50
+metadata/_custom_type_script = "uid://cqevfgqqftml3"

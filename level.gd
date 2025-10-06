@@ -11,6 +11,7 @@ signal failed
 @onready var level_timer: Timer = $LevelTimer
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
 @onready var memory_full_timer: Timer = $MemoryFullTimer
+@onready var memory_container: Node2D = $MemoryContainer
 
 const MEMORY := preload("uid://d36yllicrg8s1")
 const TOP_MARGIN := 20
@@ -24,9 +25,12 @@ func _ready() -> void:
 	memory_full_timer.wait_time = params.grace_period_seconds
 	calculate_corruption_probability()
 
+var times := 0
+func _process(_delta: float) -> void:
+	Globals.set_time(level_timer.time_left, params)
+
 
 func calculate_corruption_probability() -> void:
-	Globals.set_time(level_timer.time_left, params)
 	var x := (level_timer.wait_time - level_timer.time_left) / level_timer.wait_time
 	var probability = params.corrupt_probability_evolution.sample(x)
 	Globals.corrupt_probability = probability
@@ -54,7 +58,7 @@ func create_memory_bar():
 		)
 	instance.left_scene.connect(_on_left_scene)
 	instance.killed.connect(_on_killed)
-	self.add_child(instance)
+	memory_container.add_child(instance)
 
 
 func _on_left_scene(memory: Memory):
@@ -63,21 +67,18 @@ func _on_left_scene(memory: Memory):
 		
 	if memory.is_corrupt:
 		Globals.increase_memory(params.memory_increase)
-	else:
-		if memory_full_timer.is_stopped():
-			# do not decrease while user is full
-			# force the user to take action
-			Globals.decrease_memory(params.memory_decrease)
+		print(memory, " +", params.memory_increase)
 	
 	if Globals.memory >= 100:
 		if memory_full_timer.is_stopped():
 			memory_full_timer.start()
-	elif not memory_full_timer.is_stopped():
+	else:
 		memory_full_timer.stop()
 
 
 func _on_killed(memory: Memory):
-	pass
+	Globals.decrease_memory(params.memory_decrease)
+	print(memory, " -", params.memory_increase)
 
 
 func _on_timer_timeout() -> void:

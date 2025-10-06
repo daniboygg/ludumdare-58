@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dqr6x3c2ydg43"]
+[gd_scene load_steps=12 format=3 uid="uid://dqr6x3c2ydg43"]
 
 [ext_resource type="Theme" uid="uid://dnroccymnpymn" path="res://theme.tres" id="1_mghd1"]
 [ext_resource type="Script" uid="uid://8hh3nlsd4n3i" path="res://ui.gd" id="2_2gdlo"]
@@ -11,10 +11,6 @@ MarginContainer/constants/margin_bottom = 5
 MarginContainer/constants/margin_left = 5
 MarginContainer/constants/margin_right = 5
 MarginContainer/constants/margin_top = 5
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1bvp3"]
-atlas = ExtResource("4_g3uqr")
-region = Rect2(0, 0, 51, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lquwl"]
 atlas = ExtResource("4_g3uqr")
@@ -97,17 +93,19 @@ text = "Memory"
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
+modulate = Color(0.3764706, 0.5647059, 0.20392157, 1)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 step = 5.0
-texture_under = SubResource("AtlasTexture_1bvp3")
+value = 45.0
 texture_over = SubResource("AtlasTexture_lquwl")
 texture_progress = SubResource("AtlasTexture_7mycd")
 
 [node name="Percentage" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "100%"
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer"]

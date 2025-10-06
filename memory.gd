@@ -38,8 +38,13 @@ func _process(delta: float) -> void:
 	
 	if is_mouse_over_me():
 		color_rect.color = color_highlight
+		if is_corrupt and Input.is_action_just_pressed("ui_shoot"):
+			is_killed = true
+			animation_player.play("killed")
+			killed.emit(self)
 	else:
 		color_rect.color = color_base
+		
 	
 	if position.x > Globals.WIDTH:
 		if is_corrupt:
@@ -49,17 +54,6 @@ func _process(delta: float) -> void:
 		else:
 			left_scene.emit(self)
 			queue_free()
-			
-
-func _input(event: InputEvent) -> void:
-	if not event is InputEventMouseButton or is_killed:
-		return
-		
-	if event.is_released() and is_mouse_over_me() and is_corrupt:
-		is_killed = true
-		animation_player.play("killed")
-		killed.emit(self)
-
 
 func is_mouse_over_me() -> bool:
 	var mouse_position := get_viewport().get_mouse_position()

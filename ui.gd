@@ -6,6 +6,11 @@ extends Control
 @onready var program: Label = %Program
 @onready var debug: Label = %Debug
 
+const green := Color("609034ff")
+const orange := Color("9b5f36ff")
+const red := Color("802e2eff")
+
+var tween_grace: Tween = null
 
 func _ready() -> void:
 	Globals.memory_increased.connect(_on_memory_increased)
@@ -13,6 +18,16 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	if Globals.memory < 70:
+		texture_progress_bar.modulate = green
+		percentage.modulate = green
+	elif Globals.memory < 90:
+		texture_progress_bar.modulate = orange
+		percentage.modulate = orange
+	else:
+		texture_progress_bar.modulate = red
+		percentage.modulate = red
+
 	percentage.text = "%3d%%" % [Globals.memory]
 	clock.value = Globals.time_normalized * 100
 	program.text = "program_%02d" % Globals.current_level
