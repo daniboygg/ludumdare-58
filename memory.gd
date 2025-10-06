@@ -1,7 +1,7 @@
 class_name Memory extends Node2D
 
-signal left_scene(Memory)
-signal killed(Memory)
+signal left_scene(memory: Memory)
+signal killed(memory: Memory)
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var color_rect: ColorRect = $Node2D/ColorRect
@@ -42,12 +42,12 @@ func _process(delta: float) -> void:
 		color_rect.color = color_base
 	
 	if position.x > Globals.WIDTH:
-		left_scene.emit(self)
 		if is_corrupt:
 			is_killed = true
 			left_scene.emit(self)
 			show_leak_level_and_free()
 		else:
+			left_scene.emit(self)
 			queue_free()
 			
 
