@@ -13,6 +13,7 @@ levels = Array[ExtResource("2_5vw27")]([ExtResource("3_kek77"), ExtResource("4_l
 [node name="World" type="Node2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="Interface" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
